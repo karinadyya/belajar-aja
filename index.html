@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#A1BC98">
+    <meta name="description" content="Ilyn - Elegansi Muslim, Inspirasi Ilyn">
+    <title>Ilyn - Fashion Muslim Modern</title>
+    
+    <!-- Bootstrap 5 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css" rel="stylesheet">
+    
+    <!-- Anime.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
+    <link rel="manifest" href="#" id="manifest-placeholder">
+    
+    <style>
+        :root {
+            --primary: #A1BC98;
+            --search: #FEF3E2;
+            --layout: #E3DFC8;
+        }
+        
+        body {
+            background-color: var(--primary);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding-bottom: 70px;
+        }
+        
+        .navbar {
+            background-color: var(--layout) !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .search-bar {
+            background-color: var(--search);
+            border-radius: 25px;
+            padding: 10px 20px;
+            border: none;
+        }
+        
+        .category-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: transform 0.3s;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 10px 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .product-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #E3DFC8, #A1BC98);
+        }
+        
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--layout);
+            padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        
+        .nav-item-custom {
+            text-align: center;
+            cursor: pointer;
+            padding: 5px;
+            transition: all 0.3s;
+        }
+        
+        .nav-item-custom:hover {
+            transform: scale(1.1);
+        }
+        
+        .nav-item-custom.active {
+            color: #2d5016;
+        }
+        
+        .badge-notif {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #dc3545;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .filter-chip {
+            display: inline-block;
+            padding: 8px 15px;
+            margin: 5px;
+            background: white;
+            border-radius: 20px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .filter-chip.active {
+            background: var(--primary);
+            color: white;
+            border-color: #2d5016;
+        }
+        
+        .notif-item {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .notif-item:hover {
+            background: var(--search);
+        }
+        
+        .notif-item.unread {
+            border-left: 4px solid #dc3545;
+            font-weight: 600;
+        }
+        
+        .store-card {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--layout), var(--primary));
+            padding: 30px 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            color: #2d5016;
+            text-align: center;
+        }
+        
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-light sticky-top">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1"><i class="bi bi-heart-fill text-danger"></i> Ilyn</span>
+            <span class="text-muted small">Elegansi Muslim, Inspirasi Ilyn</span>
+        </div>
+    </nav>
+
+    <div class="container mt-3">
+        <!-- Beranda Page -->
+        <div id="homePage" class="page active">
+            <div class="hero-section">
+                <h2 class="fw-bold">Selamat Datang di Ilyn</h2>
+                <p class="mb-0">Temukan gaya muslim modern-mu!</p>
+            </div>
+            
+            <!-- Search Bar -->
+            <div class="mb-4">
+                <input type="text" id="searchInput" class="form-control search-bar" placeholder="🔍 Cari produk...">
+                <div id="searchSuggestions" class="mt-2"></div>
+            </div>
+            
+            <!-- Filters -->
+            <div class="mb-3">
+                <h5>Kategori</h5>
+                <div id="categoryFilters">
+                    <span class="filter-chip active" data-value="all">Semua</span>
+                    <span class="filter-chip" data-value="pria">Pria</span>
+                    <span class="filter-chip" data-value="wanita">Wanita</span>
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <h5>Ukuran</h5>
+                <div id="sizeFilters">
+                    <span class="filter-chip active" data-value="all">Semua</span>
+                    <span class="filter-chip" data-value="S">S</span>
+                    <span class="filter-chip" data-value="M">M</span>
+                    <span class="filter-chip" data-value="L">L</span>
+                    <span class="filter-chip" data-value="XL">XL</span>
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <h5>Harga</h5>
+                <div id="priceFilters">
+                    <span class="filter-chip active" data-value="all">Semua</span>
+                    <span class="filter-chip" data-value="0-200000">< 200rb</span>
+                    <span class="filter-chip" data-value="200000-500000">200rb - 500rb</span>
+                    <span class="filter-chip" data-value="500000-999999">> 500rb</span>
+                </div>
+            </div>
+            
+            <!-- Products -->
+            <h5 class="mt-4">Produk</h5>
+            <div id="productList" class="row"></div>
+        </div>
+
+        <!-- Notifikasi Page -->
+        <div id="notifPage" class="page">
+            <h3 class="mb-4">Notifikasi</h3>
+            <div id="notifList"></div>
+        </div>
+
+        <!-- Lokasi Page -->
+        <div id="locationPage" class="page">
+            <h3 class="mb-4">Lokasi Toko</h3>
+            <div class="alert alert-info">
+                <i class="bi bi-info-circle"></i> Toko terdekat berdasarkan lokasimu
+            </div>
+            <div id="storeList"></div>
+        </div>
+
+        <!-- Search Results Page -->
+        <div id="searchPage" class="page">
+            <h3 class="mb-4">Hasil Pencarian</h3>
+            <div id="searchResults" class="row"></div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col nav-item-custom active" data-page="homePage">
+                    <i class="bi bi-house-door-fill fs-4"></i>
+                    <div class="small">Beranda</div>
+                </div>
+                <div class="col nav-item-custom" data-page="searchPage">
+                    <i class="bi bi-search fs-4"></i>
+                    <div class="small">Cari</div>
+                </div>
+                <div class="col nav-item-custom position-relative" data-page="notifPage">
+                    <i class="bi bi-bell-fill fs-4"></i>
+                    <span class="badge-notif" id="notifBadge">3</span>
+                    <div class="small">Notifikasi</div>
+                </div>
+                <div class="col nav-item-custom" data-page="locationPage">
+                    <i class="bi bi-geo-alt-fill fs-4"></i>
+                    <div class="small">Toko</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Data Produk
+        const products = [
+            {id: 1, name: 'Gamis Elegan', category: 'wanita', size: ['S', 'M', 'L', 'XL'], price: 350000, image: ''},
+            {id: 2, name: 'Kemeja Koko Premium', category: 'pria', size: ['M', 'L', 'XL'], price: 280000, image: ''},
+            {id: 3, name: 'Tunik Modern', category: 'wanita', size: ['S', 'M', 'L'], price: 180000, image: ''},
+            {id: 4, name: 'Baju Koko Casual', category: 'pria', size: ['S', 'M', 'L', 'XL'], price: 220000, image: ''},
+            {id: 5, name: 'Hijab Premium', category: 'wanita', size: ['All'], price: 75000, image: ''},
+            {id: 6, name: 'Sarung Wadimor', category: 'pria', size: ['All'], price: 150000, image: ''},
+            {id: 7, name: 'Dress Syari', category: 'wanita', size: ['M', 'L', 'XL'], price: 420000, image: ''},
+            {id: 8, name: 'Jubah Arab', category: 'pria', size: ['L', 'XL'], price: 550000, image: ''},
+        ];
+
+        // Data Notifikasi
+        let notifications = [
+            {id: 1, title: 'Diskon 50%!', message: 'Promo spesial untuk koleksi ramadan', read: false, date: '2 jam lalu'},
+            {id: 2, title: 'Produk Baru', message: 'Koleksi gamis terbaru sudah tersedia', read: false, date: '5 jam lalu'},
+            {id: 3, title: 'Pesanan Dikirim', message: 'Pesananmu sedang dalam perjalanan', read: false, date: '1 hari lalu'},
+        ];
+
+        // Data Toko
+        const stores = [
+            {id: 1, name: 'Ilyn Store Jakarta Pusat', address: 'Jl. Thamrin No. 10, Jakarta Pusat', distance: '2.5 km', phone: '021-12345678'},
+            {id: 2, name: 'Ilyn Store Bandung', address: 'Jl. Braga No. 25, Bandung', distance: '150 km', phone: '022-87654321'},
+            {id: 3, name: 'Ilyn Store Surabaya', address: 'Jl. Pemuda No. 5, Surabaya', distance: '750 km', phone: '031-11223344'},
+        ];
+
+        // State Management
+        let filters = {
+            category: 'all',
+            size: 'all',
+            price: 'all',
+            search: ''
+        };
+
+        // Load preferences
+        const savedFilters = JSON.parse(localStorage.getItem('ilynFilters') || '{}');
+        filters = {...filters, ...savedFilters};
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            renderNotifications();
+            renderStores();
+            setupEventListeners();
+            animateEntrance();
+            registerServiceWorker();
+            updateNotifBadge();
+        });
+
+        function animateEntrance() {
+            anime({
+                targets: '.category-card, .product-card',
+                translateY: [50, 0],
+                opacity: [0, 1],
+                delay: anime.stagger(100),
+                easing: 'easeOutExpo'
+            });
+        }
+
+        function renderProducts() {
+            const container = document.getElementById('productList');
+            const filtered = products.filter(p => {
+                let match = true;
+                
+                if (filters.category !== 'all' && p.category !== filters.category) match = false;
+                if (filters.size !== 'all' && !p.size.includes(filters.size) && !p.size.includes('All')) match = false;
+                
+                if (filters.price !== 'all') {
+                    const [min, max] = filters.price.split('-').map(Number);
+                    if (p.price < min || p.price > max) match = false;
+                }
+                
+                if (filters.search && !p.name.toLowerCase().includes(filters.search.toLowerCase())) match = false;
+                
+                return match;
+            });
+
+            container.innerHTML = filtered.map(p => `
+                <div class="col-6 col-md-4">
+                    <div class="product-card">
+                        <div class="product-img"></div>
+                        <div class="p-3">
+                            <h6 class="mb-1">${p.name}</h6>
+                            <p class="text-muted small mb-1">${p.category === 'pria' ? '👔 Pria' : '👗 Wanita'}</p>
+                            <p class="fw-bold text-success mb-0">Rp ${p.price.toLocaleString('id-ID')}</p>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            anime({
+                targets: '.product-card',
+                scale: [0.8, 1],
+                opacity: [0, 1],
+                delay: anime.stagger(50)
+            });
+        }
+
+        function renderNotifications() {
+            const container = document.getElementById('notifList');
+            container.innerHTML = notifications.map(n => `
+                <div class="notif-item ${n.read ? '' : 'unread'}" onclick="readNotification(${n.id})">
+                    <h6>${n.title}</h6>
+                    <p class="mb-1 small">${n.message}</p>
+                    <small class="text-muted">${n.date}</small>
+                </div>
+            `).join('');
+        }
+
+        function renderStores() {
+            const container = document.getElementById('storeList');
+            container.innerHTML = stores.map(s => `
+                <div class="store-card">
+                    <h6><i class="bi bi-shop"></i> ${s.name}</h6>
+                    <p class="mb-1 small"><i class="bi bi-geo-alt"></i> ${s.address}</p>
+                    <p class="mb-2 small text-muted"><i class="bi bi-signpost"></i> ${s.distance}</p>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-sm btn-outline-success" onclick="openMaps('${s.address}')">
+                            <i class="bi bi-map"></i> Navigasi
+                        </button>
+                        <button class="btn btn-sm btn-outline-primary" onclick="callStore('${s.phone}')">
+                            <i class="bi bi-telephone"></i> Telepon
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function setupEventListeners() {
+            // Navigation
+            document.querySelectorAll('.nav-item-custom').forEach(item => {
+                item.addEventListener('click', () => {
+                    const page = item.dataset.page;
+                    switchPage(page);
+                    
+                    document.querySelectorAll('.nav-item-custom').forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+                });
+            });
+
+            // Filters
+            document.querySelectorAll('#categoryFilters .filter-chip').forEach(chip => {
+                chip.addEventListener('click', () => {
+                    document.querySelectorAll('#categoryFilters .filter-chip').forEach(c => c.classList.remove('active'));
+                    chip.classList.add('active');
+                    filters.category = chip.dataset.value;
+                    saveFilters();
+                    renderProducts();
+                });
+            });
+
+            document.querySelectorAll('#sizeFilters .filter-chip').forEach(chip => {
+                chip.addEventListener('click', () => {
+                    document.querySelectorAll('#sizeFilters .filter-chip').forEach(c => c.classList.remove('active'));
+                    chip.classList.add('active');
+                    filters.size = chip.dataset.value;
+                    saveFilters();
+                    renderProducts();
+                });
+            });
+
+            document.querySelectorAll('#priceFilters .filter-chip').forEach(chip => {
+                chip.addEventListener('click', () => {
+                    document.querySelectorAll('#priceFilters .filter-chip').forEach(c => c.classList.remove('active'));
+                    chip.classList.add('active');
+                    filters.price = chip.dataset.value;
+                    saveFilters();
+                    renderProducts();
+                });
+            });
+
+            // Search
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value;
+                if (query.length > 0) {
+                    showSearchSuggestions(query);
+                } else {
+                    document.getElementById('searchSuggestions').innerHTML = '';
+                }
+            });
+
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    performSearch(e.target.value);
+                }
+            });
+        }
+
+        function showSearchSuggestions(query) {
+            const suggestions = products.filter(p => 
+                p.name.toLowerCase().includes(query.toLowerCase())
+            ).slice(0, 5);
+
+            const container = document.getElementById('searchSuggestions');
+            container.innerHTML = suggestions.map(s => `
+                <div class="p-2 bg-white rounded mb-1" style="cursor: pointer;" onclick="selectSuggestion('${s.name}')">
+                    ${s.name}
+                </div>
+            `).join('');
+        }
+
+        function selectSuggestion(name) {
+            document.getElementById('searchInput').value = name;
+            performSearch(name);
+            document.getElementById('searchSuggestions').innerHTML = '';
+        }
+
+        function performSearch(query) {
+            filters.search = query;
+            switchPage('searchPage');
+            
+            const container = document.getElementById('searchResults');
+            const results = products.filter(p => 
+                p.name.toLowerCase().includes(query.toLowerCase())
+            );
+
+            if (results.length === 0) {
+                container.innerHTML = '<div class="col-12 text-center p-5"><p>Tidak ada produk yang ditemukan</p></div>';
+                return;
+            }
+
+            container.innerHTML = results.map(p => `
+                <div class="col-6 col-md-4">
+                    <div class="product-card">
+                        <div class="product-img"></div>
+                        <div class="p-3">
+                            <h6 class="mb-1">${p.name}</h6>
+                            <p class="text-muted small mb-1">${p.category === 'pria' ? '👔 Pria' : '👗 Wanita'}</p>
+                            <p class="fw-bold text-success mb-0">Rp ${p.price.toLocaleString('id-ID')}</p>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function switchPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            
+            anime({
+                targets: `#${pageId}`,
+                translateX: [100, 0],
+                opacity: [0, 1],
+                duration: 500,
+                easing: 'easeOutExpo'
+            });
+        }
+
+        function readNotification(id) {
+            const notif = notifications.find(n => n.id === id);
+            if (notif) {
+                notif.read = true;
+                renderNotifications();
+                updateNotifBadge();
+            }
+        }
+
+        function updateNotifBadge() {
+            const unread = notifications.filter(n => !n.read).length;
+            const badge = document.getElementById('notifBadge');
+            if (unread > 0) {
+                badge.textContent = unread;
+                badge.style.display = 'flex';
+            } else {
+                badge.style.display = 'none';
+            }
+        }
+
+        function openMaps(address) {
+            const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+            window.open(url, '_blank');
+        }
+
+        function callStore(phone) {
+            window.location.href = `tel:${phone}`;
+        }
+
+        function saveFilters() {
+            localStorage.setItem('ilynFilters', JSON.stringify(filters));
+        }
+
+        // Service Worker Registration
+        function registerServiceWorker() {
+            if ('serviceWorker' in navigator) {
+                const swCode = `
+                    self.addEventListener('install', (e) => {
+                        e.waitUntil(
+                            caches.open('ilyn-v1').then((cache) => {
+                                return cache.addAll(['/']);
+                            })
+                        );
+                    });
+
+                    self.addEventListener('fetch', (e) => {
+                        e.respondWith(
+                            caches.match(e.request).then((response) => {
+                                return response || fetch(e.request);
+                            })
+                        );
+                    });
+                `;
+                
+                const blob = new Blob([swCode], { type: 'application/javascript' });
+                const swUrl = URL.createObjectURL(blob);
+                
+                navigator.serviceWorker.register(swUrl).then(() => {
+                    console.log('Service Worker registered');
+                }).catch((error) => {
+                    console.log('Service Worker registration failed:', error);
+                });
+            }
+
+            // Manifest
+            const manifest = {
+                name: 'Ilyn - Fashion Muslim',
+                short_name: 'Ilyn',
+                description: 'Elegansi Muslim, Inspirasi Ilyn',
+                start_url: '/',
+                display: 'standalone',
+                background_color: '#A1BC98',
+                theme_color: '#A1BC98',
+                icons: [
+                    {
+                        src: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%23A1BC98" width="100" height="100"/><text x="50" y="60" font-size="40" text-anchor="middle" fill="white" font-family="Arial">I</text></svg>',
+                        sizes: '192x192',
+                        type: 'image/svg+xml'
+                    }
+                ]
+            };
+
+            const manifestBlob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
+            const manifestUrl = URL.createObjectURL(manifestBlob);
+            document.getElementById('manifest-placeholder').setAttribute('href', manifestUrl);
+        }
+    </script>
+</body>
+</html>
