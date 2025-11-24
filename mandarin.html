@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#4A70A9">
+    <title>MandarinLearn.byKarina</title>
+    
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome 7 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Anime.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
+    <style>
+        :root {
+            --primary: #4A70A9;
+            --secondary: #AAC4F5;
+            --accent: #F1F3E0;
+            --light: #EFECE3;
+            --dark: #2c3e50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--light);
+            transition: background 0.3s, color 0.3s;
+        }
+
+        body.dark-mode {
+            background: #1a1a1a;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .card {
+            background: #2a2a2a;
+            color: #e0e0e0;
+            border-color: #3a3a3a;
+        }
+
+        body.dark-mode .navbar {
+            background: #2a2a2a !important;
+            border-bottom: 1px solid #3a3a3a;
+        }
+
+        body.dark-mode .bottom-nav {
+            background: #2a2a2a;
+            border-top: 1px solid #3a3a3a;
+        }
+
+        body.dark-mode .form-control,
+        body.dark-mode .form-select {
+            background: #3a3a3a;
+            color: #e0e0e0;
+            border-color: #4a4a4a;
+        }
+
+        body.dark-mode .list-group-item {
+            background: #2a2a2a;
+            color: #e0e0e0;
+            border-color: #3a3a3a;
+        }
+
+        body.dark-mode .text-muted {
+            color: #b0b0b0 !important;
+        }
+
+        body.dark-mode .text-primary {
+            color: #AAC4F5 !important;
+        }
+
+        body.dark-mode h1, 
+        body.dark-mode h2, 
+        body.dark-mode h3, 
+        body.dark-mode h4, 
+        body.dark-mode h5, 
+        body.dark-mode h6 {
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .module-item span {
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .card-header {
+            color: white !important;
+        }
+
+        body.dark-mode .semester-badge {
+            background: #4A70A9;
+            color: white;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: linear-gradient(135deg, var(--primary), var(--secondary)) !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--primary);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .brand-text {
+            text-align: center;
+        }
+
+        .brand-text h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: white;
+            margin: 0;
+        }
+
+        .brand-text p {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.9);
+            margin: 0;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 10px 0;
+        }
+
+        .nav-item-bottom {
+            flex: 1;
+            text-align: center;
+            padding: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-item-bottom:hover,
+        .nav-item-bottom.active {
+            color: var(--primary);
+        }
+
+        .nav-item-bottom i {
+            font-size: 24px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .nav-item-bottom span {
+            font-size: 12px;
+            display: block;
+        }
+
+        .badge-notif {
+            position: absolute;
+            top: 5px;
+            right: 30%;
+            background: #dc3545;
+            color: white;
+            border-radius: 10px;
+            padding: 2px 6px;
+            font-size: 10px;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 20px 15px 80px 15px;
+            min-height: calc(100vh - 80px);
+        }
+
+        /* Cards */
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: var(--primary);
+            border: none;
+            border-radius: 10px;
+            padding: 12px 30px;
+            font-weight: 500;
+        }
+
+        .btn-primary:hover {
+            background: #3a5d8f;
+        }
+
+        /* Semester Badge */
+        .semester-badge {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--primary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Package Cards */
+        .package-card {
+            border: 2px solid var(--secondary);
+            transition: all 0.3s;
+        }
+
+        .package-card:hover {
+            border-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .package-card.recommended {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, rgba(74,112,169,0.05), rgba(170,196,245,0.05));
+        }
+
+        /* Chat Interface */
+        .chat-container {
+            height: 500px;
+            overflow-y: auto;
+            padding: 20px;
+            background: var(--accent);
+            border-radius: 15px;
+        }
+
+        .chat-message {
+            margin-bottom: 15px;
+            animation: fadeIn 0.5s;
+        }
+
+        .chat-message.user {
+            text-align: right;
+        }
+
+        .chat-message .bubble {
+            display: inline-block;
+            padding: 12px 18px;
+            border-radius: 20px;
+            max-width: 70%;
+        }
+
+        .chat-message.user .bubble {
+            background: var(--primary);
+            color: white;
+        }
+
+        .chat-message.bot .bubble {
+            background: white;
+            color: var(--dark);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            cursor: pointer;
+            font-size: 24px;
+            color: white;
+            padding: 5px 10px;
+        }
+
+        /* Module Item */
+        .module-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        body.dark-mode .module-item {
+            background: #3a3a3a;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Logout Button */
+        .btn-logout {
+            background: #c0c0c0 !important;
+            color: #2c3e50 !important;
+            border: none;
+        }
+
+        .btn-logout:hover {
+            background: #a8a8a8 !important;
+            color: #1a1a1a !important;
+        }
+
+        /* Search Bar */
+        .search-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .search-container input {
+            border-radius: 25px;
+            padding: 12px 45px 12px 20px;
+            border: 2px solid var(--secondary);
+        }
+
+        .search-container i {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+        }
+
+        /* Notification Item */
+        .notif-item {
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        body.dark-mode .notif-item {
+            background: #3a3a3a;
+        }
+
+        .notif-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .notif-item.unread {
+            background: rgba(170,196,245,0.2);
+            border-left: 4px solid var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 576px) {
+            .brand-text h1 {
+                font-size: 1.1rem;
+            }
+            .brand-text p {
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <div class="logo-container">
+                <div class="logo" id="animatedLogo">
+                    <i class="fas fa-language"></i>
+                </div>
+                <div class="brand-text">
+                    <h1>MandarinLearn.byKarina</h1>
+                    <p>Belajar Mandarin dengan Mindful</p>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Theme Toggle (Fixed Position) -->
+    <div class="theme-toggle" onclick="toggleTheme()" style="position: fixed; top: 20px; right: 20px; z-index: 1001;">
+        <i class="fas fa-moon" id="themeIcon"></i>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Registration Page -->
+        <div id="registrationPage" class="page">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body p-4">
+                                <h3 class="text-center mb-4">Daftar Sekarang</h3>
+                                <form id="registrationForm">
+                                    <div class="mb-3">
+                                        <label class="form-label">Nama Lengkap</label>
+                                        <input type="text" class="form-control" id="userName" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Program Studi</label>
+                                        <input type="text" class="form-control" id="userProdi" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Nomor WhatsApp</label>
+                                        <input type="tel" class="form-control" id="userPhone" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Semester</label>
+                                        <select class="form-select" id="userSemester" required>
+                                            <option value="">Pilih Semester</option>
+                                            <option value="1">Semester 1</option>
+                                            <option value="2">Semester 2</option>
+                                            <option value="3">Semester 3</option>
+                                            <option value="4">Semester 4</option>
+                                            <option value="5">Semester 5</option>
+                                            <option value="6">Semester 6</option>
+                                            <option value="7">Semester 7</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary w-100">Daftar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Home Page -->
+        <div id="homePage" class="page hidden">
+            <div class="container">
+                <h4 class="mb-4">Selamat Datang, <span id="welcomeName"></span>! 👋</h4>
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="card" onclick="navigateTo('search')">
+                            <div class="card-body text-center p-4">
+                                <i class="fas fa-search fa-3x text-primary mb-3"></i>
+                                <h5>Pencarian</h5>
+                                <p class="text-muted">Cari modul, latihan, dan ujian</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="card" onclick="navigateTo('catalog')">
+                            <div class="card-body text-center p-4">
+                                <i class="fas fa-book fa-3x text-primary mb-3"></i>
+                                <h5>Katalog</h5>
+                                <p class="text-muted">Lihat semua materi per semester</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="card" onclick="navigateTo('subscription')">
+                            <div class="card-body text-center p-4">
+                                <i class="fas fa-credit-card fa-3x text-primary mb-3"></i>
+                                <h5>Langganan</h5>
+                                <p class="text-muted">Pilih paket langganan Anda</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="card" onclick="navigateTo('chat')">
+                            <div class="card-body text-center p-4">
+                                <i class="fas fa-comments fa-3x text-primary mb-3"></i>
+                                <h5>Tanya PR</h5>
+                                <p class="text-muted">Chat dengan AI untuk bantuan PR</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search Page -->
+        <div id="searchPage" class="page hidden">
+            <div class="container">
+                <h4 class="mb-4">Pencarian</h4>
+                
+                <div class="search-container">
+                    <input type="text" class="form-control" id="searchInput" placeholder="Cari modul, latihan, atau ujian...">
+                    <i class="fas fa-search"></i>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Filter Semester</label>
+                    <select class="form-select" id="semesterFilter">
+                        <option value="">Semua Semester</option>
+                        <option value="1">Semester 1</option>
+                        <option value="2">Semester 2</option>
+                        <option value="3">Semester 3</option>
+                        <option value="4">Semester 4</option>
+                        <option value="5">Semester 5</option>
+                        <option value="6">Semester 6</option>
+                        <option value="7">Semester 7</option>
+                    </select>
+                </div>
+
+                <div id="searchResults"></div>
+            </div>
+        </div>
+
+        <!-- Catalog Page -->
+        <div id="catalogPage" class="page hidden">
+            <div class="container">
+                <h4 class="mb-4">Katalog Materi</h4>
+                <div id="catalogContent"></div>
+            </div>
+        </div>
+
+        <!-- Subscription Page -->
+        <div id="subscriptionPage" class="page hidden">
+            <div class="container">
+                <h4 class="mb-4">Paket Langganan</h4>
+                
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <div class="card package-card">
+                            <div class="card-body p-4">
+                                <h5 class="text-center">Paket Mingguan</h5>
+                                <h2 class="text-center text-primary my-3">Rp 500.000</h2>
+                                <p class="text-center text-muted mb-4">Per Minggu</p>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Akses Modul</li>
+                                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Soal Latihan</li>
+                                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Soal Ujian</li>
+                                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Tanya PR</li>
+                                </ul>
+                                <button class="btn btn-primary w-100 mt-3" onclick="subscribe('weekly')">Pilih Paket</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card package-card recommended">
+                            <div class="card-body p-4">
+                                <div class="badge bg-primary mb-2">Rekomendasi</div>
+                                <h5 class="text-center">Paket Bulanan</h5>
+                                <h2 class="text-center text-primary my-3">Rp 1.500.000</h2>
+                                <p class="text-center text-muted mb-4">Per Bulan</p>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Akses Modul</li>
+                                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Soal Latihan</li>
+                                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Soal Ujian</li>
+                                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Tanya PR</li>
+                                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Hemat 25%</li>
+                                </ul>
+                                <button class="btn btn-primary w-100 mt-3" onclick="subscribe('monthly')">Pilih Paket</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card package-card">
+                            <div class="card-body p-4">
+                                <h5 class="text-center">Paket Semester</h5>
+                                <h2 class="text-center text-primary my-3">Rp 6.000.000</h2>
+                                <p class="text-center text-muted mb-4">Per Semester</p>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Akses Modul</li>
+                                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Soal Latihan</li>
+                                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Soal Ujian</li>
+                                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Tanya PR</li>
+                                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Hemat 40%</li>
+                                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Prioritas Support</li>
+                                </ul>
+                                <button class="btn btn-primary w-100 mt-3" onclick="subscribe('semester')">Pilih Paket</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat Page -->
+        <div id="chatPage" class="page hidden">
+            <div class="container">
+                <h4 class="mb-4">Tanya PR</h4>
+                <div class="card">
+                    <div class="card-body p-0">
+                        <div class="chat-container" id="chatContainer">
+                            <div class="chat-message bot">
+                                <div class="bubble">
+                                    Halo! Saya siap membantu PR Mandarin kamu. Silakan tanyakan apa saja! 😊
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-3 border-top">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="chatInput" placeholder="Ketik pertanyaan...">
+                                <button class="btn btn-primary" onclick="sendMessage()">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notification Page -->
+        <div id="notificationPage" class="page hidden">
+            <div class="container">
+                <h4 class="mb-4">Notifikasi</h4>
+                <div id="notificationContent"></div>
+            </div>
+        </div>
+
+        <!-- Promo Page -->
+        <div id="promoPage" class="page hidden">
+            <div class="container">
+                <h4 class="mb-4">Promo Spesial</h4>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="badge bg-danger mb-2">Promo Terbatas</div>
+                                <h5>Diskon 30% Paket Semester</h5>
+                                <p class="text-muted">Dapatkan diskon spesial untuk paket semester hingga akhir bulan!</p>
+                                <button class="btn btn-primary" onclick="navigateTo('subscription')">Lihat Detail</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="badge bg-success mb-2">Gratis</div>
+                                <h5>Modul Dasar Gratis</h5>
+                                <p class="text-muted">Akses modul dasar Mandarin tanpa biaya selama 7 hari!</p>
+                                <button class="btn btn-primary" onclick="claimPromo('free')">Klaim Sekarang</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Page -->
+        <div id="profilePage" class="page hidden">
+            <div class="container">
+                <h4 class="mb-4">Profil Saya</h4>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="text-center mb-4">
+                            <div class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px; font-size: 32px;">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        <div id="profileContent"></div>
+                        <button class="btn btn-logout w-100 mt-3" onclick="logout()">Keluar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment Page -->
+        <div id="paymentPage" class="page hidden">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body p-4">
+                                <h4 class="text-center mb-4">Form Pembayaran</h4>
+                                <div class="alert alert-info mb-4">
+                                    <strong>Paket:</strong> <span id="selectedPackage"></span>
+                                </div>
+                                <form id="paymentForm">
+                                    <div class="mb-3">
+                                        <label class="form-label">Nama Lengkap</label>
+                                        <input type="text" class="form-control" id="paymentName" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Nomor WhatsApp</label>
+                                        <input type="tel" class="form-control" id="paymentPhone" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Metode Pembayaran</label>
+                                        <select class="form-select" id="paymentMethod" required>
+                                            <option value="">Pilih Metode</option>
+                                            <option value="transfer">Transfer Bank</option>
+                                            <option value="gopay">GoPay</option>
+                                            <option value="ovo">OVO</option>
+                                            <option value="dana">DANA</option>
+                                            <option value="shopeepay">ShopeePay</option>
+                                            <option value="qris">QRIS</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary w-100">Lanjutkan Pembayaran</button>
+                                    <button type="button" class="btn btn-secondary w-100 mt-2" onclick="navigateTo('subscription')">Batal</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <div class="d-flex">
+            <div class="nav-item-bottom active" onclick="navigateTo('home')">
+                <i class="fas fa-home"></i>
+                <span>Beranda</span>
+            </div>
+            <div class="nav-item-bottom" onclick="navigateTo('notification')">
+                <i class="fas fa-bell"></i>
+                <span>Notifikasi</span>
+                <span class="badge-notif" id="notifBadge">3</span>
+            </div>
+            <div class="nav-item-bottom" onclick="navigateTo('promo')">
+                <i class="fas fa-tags"></i>
+                <span>Promo</span>
+            </div>
+            <div class="nav-item-bottom" onclick="navigateTo('profile')">
+                <i class="fas fa-user"></i>
+                <span>Profil</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Data dummy
+        const materials = {
+            1: {
+                modules: ['Pengenalan Hanzi', 'Pinyin Dasar', 'Angka dan Waktu'],
+                exercises: ['Latihan Hanzi 1', 'Latihan Pinyin 1', 'Latihan Angka 1'],
+                exams: ['Ujian Tengah Semester 1', 'Ujian Akhir Semester 1']
+            },
+            2: {
+                modules: ['Kata Kerja Dasar', 'Kalimat Sederhana', 'Percakapan Sehari-hari'],
+                exercises: ['Latihan Kata Kerja', 'Latihan Kalimat', 'Latihan Percakapan'],
+                exams: ['Ujian Tengah Semester 2', 'Ujian Akhir Semester 2']
+            },
+            3: {
+                modules: ['Tata Bahasa Menengah', 'Vocabulary Building', 'Membaca Teks'],
+                exercises: ['Latihan Tata Bahasa', 'Latihan Vocabulary', 'Latihan Membaca'],
+                exams: ['Ujian Tengah Semester 3', 'Ujian Akhir Semester 3']
+            },
+            4: {
+                modules: ['Menulis Hanzi Kompleks', 'Idiom Mandarin', 'Budaya Tiongkok'],
+                exercises: ['Latihan Menulis', 'Latihan Idiom', 'Latihan Budaya'],
+                exams: ['Ujian Tengah Semester 4', 'Ujian Akhir Semester 4']
+            },
+            5: {
+                modules: ['Bisnis Mandarin', 'Presentasi', 'Negosiasi'],
+                exercises: ['Latihan Bisnis', 'Latihan Presentasi', 'Latihan Negosiasi'],
+                exams: ['Ujian Tengah Semester 5', 'Ujian Akhir Semester 5']
+            },
+            6: {
+                modules: ['Sastra Mandarin', 'Menulis Esai', 'Kritik Teks'],
+                exercises: ['Latihan Sastra', 'Latihan Esai', 'Latihan Kritik'],
+                exams: ['Ujian Tengah Semester 6', 'Ujian Akhir Semester 6']
+            },
+            7: {
+                modules: ['HSK Preparation', 'Advanced Speaking', 'Academic Writing'],
+                exercises: ['Latihan HSK', 'Latihan Speaking', 'Latihan Writing'],
+                exams: ['Ujian Tengah Semester 7', 'Ujian Akhir Semester 7']
+            }
+        };
+
+        const notifications = [
+            { id: 1, title: 'Modul Baru Tersedia', text: 'Modul "HSK Preparation" sudah tersedia!', time: '2 jam lalu', unread: true },
+            { id: 2, title: 'Latihan Baru', text: 'Latihan baru untuk Semester 3 telah ditambahkan', time: '5 jam lalu', unread: true },
+            { id: 3, title: 'Promo Spesial', text: 'Diskon 30% untuk paket semester!', time: '1 hari lalu', unread: true },
+            { id: 4, title: 'Ujian Mendatang', text: 'Ujian Tengah Semester akan dimulai minggu depan', time: '2 hari lalu', unread: false }
+        ];
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuth();
+            animateLogo();
+            loadTheme();
+            renderNotifications();
+        });
+
+        // Check Authentication
+        function checkAuth() {
+            const user = JSON.parse(localStorage.getItem('user'));
+            if (user) {
+                document.getElementById('welcomeName').textContent = user.name;
+                navigateTo('home');
+            } else {
+                navigateTo('registration');
+            }
+        }
+
+        // Registration Form
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const user = {
+                name: document.getElementById('userName').value,
+                prodi: document.getElementById('userProdi').value,
+                phone: document.getElementById('userPhone').value,
+                semester: document.getElementById('userSemester').value
+            };
+            localStorage.setItem('user', JSON.stringify(user));
+            
+            // Animation
+            anime({
+                targets: '#registrationPage',
+                opacity: [1, 0],
+                translateY: [0, -50],
+                duration: 500,
+                easing: 'easeInOutQuad',
+                complete: function() {
+                    document.getElementById('welcomeName').textContent = user.name;
+                    navigateTo('home');
+                }
+            });
+        });
+
+        // Logo Animation
+        function animateLogo() {
+            anime({
+                targets: '#animatedLogo',
+                rotate: 360,
+                duration: 3000,
+                easing: 'linear',
+                loop: true
+            });
+        }
+
+        // Navigation
+        function navigateTo(page) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(p => p.classList.add('hidden'));
+            
+            // Show selected page
+            const targetPage = document.getElementById(page + 'Page');
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+                
+                // Animate page entrance
+                anime({
+                    targets: targetPage,
+                    opacity: [0, 1],
+                    translateY: [20, 0],
+                    duration: 500,
+                    easing: 'easeOutQuad'
+                });
+            }
+            
+            // Update active nav
+            document.querySelectorAll('.nav-item-bottom').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Set active based on page
+            const navMap = {
+                'home': 0,
+                'notification': 1,
+                'promo': 2,
+                'profile': 3
+            };
+            
+            if (navMap[page] !== undefined) {
+                document.querySelectorAll('.nav-item-bottom')[navMap[page]].classList.add('active');
+            }
+            
+            // Load page content
+            if (page === 'catalog') {
+                loadCatalog();
+            } else if (page === 'search') {
+                initSearch();
+            } else if (page === 'profile') {
+                loadProfile();
+            }
+        }
+
+        // Search Functionality
+        function initSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const semesterFilter = document.getElementById('semesterFilter');
+            
+            searchInput.addEventListener('input', performSearch);
+            semesterFilter.addEventListener('change', performSearch);
+            
+            performSearch();
+        }
+
+        function performSearch() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const semester = document.getElementById('semesterFilter').value;
+            const resultsDiv = document.getElementById('searchResults');
+            
+            let html = '';
+            const semestersToSearch = semester ? [semester] : Object.keys(materials);
+            
+            semestersToSearch.forEach(sem => {
+                const data = materials[sem];
+                
+                // Search in modules
+                data.modules.forEach((module, idx) => {
+                    if (module.toLowerCase().includes(query)) {
+                        html += `
+                            <div class="module-item">
+                                <div>
+                                    <span class="semester-badge">Semester ${sem}</span>
+                                    <h6 class="mt-2 mb-1">${module}</h6>
+                                    <small class="text-muted">Modul</small>
+                                </div>
+                                <button class="btn btn-sm btn-primary" onclick="downloadModule('${module}', ${sem})">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </div>
+                        `;
+                    }
+                });
+                
+                // Search in exercises
+                data.exercises.forEach((exercise, idx) => {
+                    if (exercise.toLowerCase().includes(query)) {
+                        html += `
+                            <div class="module-item">
+                                <div>
+                                    <span class="semester-badge">Semester ${sem}</span>
+                                    <h6 class="mt-2 mb-1">${exercise}</h6>
+                                    <small class="text-muted">Latihan</small>
+                                </div>
+                                <button class="btn btn-sm btn-primary" onclick="openExercise('${exercise}', ${sem})">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                            </div>
+                        `;
+                    }
+                });
+                
+                // Search in exams
+                data.exams.forEach((exam, idx) => {
+                    if (exam.toLowerCase().includes(query)) {
+                        html += `
+                            <div class="module-item">
+                                <div>
+                                    <span class="semester-badge">Semester ${sem}</span>
+                                    <h6 class="mt-2 mb-1">${exam}</h6>
+                                    <small class="text-muted">Ujian</small>
+                                </div>
+                                <button class="btn btn-sm btn-primary" onclick="openExam('${exam}', ${sem})">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                            </div>
+                        `;
+                    }
+                });
+            });
+            
+            resultsDiv.innerHTML = html || '<p class="text-center text-muted">Tidak ada hasil ditemukan</p>';
+        }
+
+        // Load Catalog
+        function loadCatalog() {
+            const catalogDiv = document.getElementById('catalogContent');
+            let html = '';
+            
+            Object.keys(materials).forEach(semester => {
+                const data = materials[semester];
+                html += `
+                    <div class="card mb-3">
+                        <div class="card-header" style="background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white;">
+                            <h5 class="mb-0">
+                                <i class="fas fa-graduation-cap me-2"></i>
+                                Semester ${semester}
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="mb-3"><i class="fas fa-book text-primary me-2"></i>Modul</h6>
+                            <div class="mb-4">
+                                ${data.modules.map(m => `
+                                    <div class="module-item">
+                                        <span>${m}</span>
+                                        <button class="btn btn-sm btn-primary" onclick="downloadModule('${m}', ${semester})">
+                                            <i class="fas fa-download me-1"></i> Unduh
+                                        </button>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            
+                            <h6 class="mb-3"><i class="fas fa-pen text-success me-2"></i>Latihan</h6>
+                            <div class="mb-4">
+                                ${data.exercises.map(e => `
+                                    <div class="module-item">
+                                        <span>${e}</span>
+                                        <button class="btn btn-sm btn-success" onclick="openExercise('${e}', ${semester})">
+                                            <i class="fas fa-play me-1"></i> Mulai
+                                        </button>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            
+                            <h6 class="mb-3"><i class="fas fa-file-alt text-danger me-2"></i>Ujian</h6>
+                            <div>
+                                ${data.exams.map(exam => `
+                                    <div class="module-item">
+                                        <span>${exam}</span>
+                                        <button class="btn btn-sm btn-danger" onclick="openExam('${exam}', ${semester})">
+                                            <i class="fas fa-pencil-alt me-1"></i> Ikuti
+                                        </button>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            catalogDiv.innerHTML = html;
+        }
+
+        // Download Module
+        function downloadModule(moduleName, semester) {
+            anime({
+                targets: event.target,
+                scale: [1, 0.8, 1],
+                duration: 300
+            });
+            
+            alert(`Mengunduh modul: ${moduleName} (Semester ${semester})\n\nModul akan segera tersimpan di perangkat Anda.`);
+        }
+
+        // Open Exercise
+        function openExercise(exerciseName, semester) {
+            anime({
+                targets: event.target,
+                scale: [1, 0.8, 1],
+                duration: 300
+            });
+            
+            alert(`Memulai latihan: ${exerciseName} (Semester ${semester})\n\nSelamat berlatih!`);
+        }
+
+        // Open Exam
+        function openExam(examName, semester) {
+            anime({
+                targets: event.target,
+                scale: [1, 0.8, 1],
+                duration: 300
+            });
+            
+            alert(`Memulai ujian: ${examName} (Semester ${semester})\n\nPastikan Anda sudah siap!`);
+        }
+
+        // Subscribe
+        function subscribe(plan) {
+            const plans = {
+                weekly: 'Mingguan - Rp 500.000',
+                monthly: 'Bulanan - Rp 1.500.000',
+                semester: 'Semester - Rp 6.000.000'
+            };
+            
+            anime({
+                targets: event.target,
+                scale: [1, 0.9, 1],
+                duration: 300
+            });
+            
+            // Store selected package
+            localStorage.setItem('selectedPackage', plans[plan]);
+            document.getElementById('selectedPackage').textContent = plans[plan];
+            
+            // Navigate to payment page
+            navigateTo('payment');
+        }
+
+        // Payment Form
+        document.getElementById('paymentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('paymentName').value;
+            const phone = document.getElementById('paymentPhone').value;
+            const method = document.getElementById('paymentMethod').value;
+            const package_ = localStorage.getItem('selectedPackage');
+            
+            alert(`Pembayaran Berhasil!\n\nNama: ${name}\nWhatsApp: ${phone}\nPaket: ${package_}\nMetode: ${method.toUpperCase()}\n\nTerima kasih telah berlangganan!`);
+            
+            // Clear form
+            this.reset();
+            navigateTo('home');
+        });
+
+        // Chat Functionality
+        document.getElementById('chatInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // Add user message
+            addChatMessage(message, 'user');
+            input.value = '';
+            
+            // Simulate bot response
+            setTimeout(() => {
+                const responses = [
+                    'Baik, saya akan membantu menjelaskan materi tersebut. Hanzi 学习 (xuéxí) berarti "belajar".',
+                    'Untuk menjawab soal ini, perhatikan struktur kalimat: Subjek + 是 (shì) + Objek.',
+                    'Pinyin yang benar adalah "nǐ hǎo" dengan nada ketiga pada kedua suku kata.',
+                    'Kata kerja dalam bahasa Mandarin tidak berubah bentuk. Untuk menunjukkan waktu lampau, gunakan 了 (le).',
+                    'Mari kita pecahkan soal ini bersama. Langkah pertama adalah mengidentifikasi hanzi yang tepat.'
+                ];
+                
+                const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                addChatMessage(randomResponse, 'bot');
+            }, 1000);
+        }
+
+        function addChatMessage(text, sender) {
+            const chatContainer = document.getElementById('chatContainer');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chat-message ${sender}`;
+            messageDiv.innerHTML = `<div class="bubble">${text}</div>`;
+            chatContainer.appendChild(messageDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        // Notifications
+        function renderNotifications() {
+            const notifDiv = document.getElementById('notificationContent');
+            let html = '';
+            
+            notifications.forEach(notif => {
+                html += `
+                    <div class="notif-item ${notif.unread ? 'unread' : ''}" onclick="readNotification(${notif.id})">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h6 class="mb-0">${notif.title}</h6>
+                            <small class="text-muted">${notif.time}</small>
+                        </div>
+                        <p class="mb-0 text-muted">${notif.text}</p>
+                    </div>
+                `;
+            });
+            
+            notifDiv.innerHTML = html;
+            
+            // Update badge
+            const unreadCount = notifications.filter(n => n.unread).length;
+            const badge = document.getElementById('notifBadge');
+            if (unreadCount > 0) {
+                badge.textContent = unreadCount;
+                badge.style.display = 'block';
+            } else {
+                badge.style.display = 'none';
+            }
+        }
+
+        function readNotification(id) {
+            const notif = notifications.find(n => n.id === id);
+            if (notif) {
+                notif.unread = false;
+                renderNotifications();
+                alert(notif.title + '\n\n' + notif.text);
+            }
+        }
+
+        // Promo
+        function claimPromo(type) {
+            anime({
+                targets: event.target,
+                scale: [1, 0.9, 1],
+                duration: 300
+            });
+            
+            alert('Promo berhasil diklaim!\n\nAnda akan mendapatkan akses gratis selama 7 hari.');
+        }
+
+        // Profile
+        function loadProfile() {
+            const user = JSON.parse(localStorage.getItem('user'));
+            if (user) {
+                const profileDiv = document.getElementById('profileContent');
+                profileDiv.innerHTML = `
+                    <div class="mb-3">
+                        <label class="text-muted small">Nama Lengkap</label>
+                        <p class="mb-0 fw-semibold">${user.name}</p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="text-muted small">Program Studi</label>
+                        <p class="mb-0 fw-semibold">${user.prodi}</p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="text-muted small">Nomor WhatsApp</label>
+                        <p class="mb-0 fw-semibold">${user.phone}</p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="text-muted small">Semester</label>
+                        <p class="mb-0 fw-semibold">Semester ${user.semester}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Logout
+        function logout() {
+            if (confirm('Apakah Anda yakin ingin keluar?')) {
+                localStorage.removeItem('user');
+                location.reload();
+            }
+        }
+
+        // Theme Toggle
+        function toggleTheme() {
+            const body = document.body;
+            const icon = document.getElementById('themeIcon');
+            
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+            
+            anime({
+                targets: '#themeIcon',
+                rotate: [0, 360],
+                duration: 500,
+                easing: 'easeInOutQuad'
+            });
+        }
+
+        function loadTheme() {
+            const theme = localStorage.getItem('theme');
+            const icon = document.getElementById('themeIcon');
+            
+            if (theme === 'dark') {
+                document.body.classList.add('dark-mode');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        }
+
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register(generateServiceWorker())
+                    .then(reg => console.log('Service Worker registered'))
+                    .catch(err => console.log('Service Worker registration failed'));
+            });
+        }
+
+        // Generate Service Worker inline
+        function generateServiceWorker() {
+            const swCode = `
+                const CACHE_NAME = 'mandarinlearn-v1';
+                const urlsToCache = [
+                    '/',
+                    '/index.html'
+                ];
+
+                self.addEventListener('install', event => {
+                    event.waitUntil(
+                        caches.open(CACHE_NAME)
+                            .then(cache => cache.addAll(urlsToCache))
+                    );
+                });
+
+                self.addEventListener('fetch', event => {
+                    event.respondWith(
+                        caches.match(event.request)
+                            .then(response => response || fetch(event.request))
+                    );
+                });
+            `;
+            
+            const blob = new Blob([swCode], { type: 'application/javascript' });
+            return URL.createObjectURL(blob);
+        }
+
+        // PWA Install Prompt
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+        });
+    </script>
+</body>
+</html>

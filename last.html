@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portofolio Karina Dya Maharani</title>
+<!-- Bootstrap 5 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Font Awesome 6 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- Anime.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+        }
+body {
+font-family: 'Poppins', sans-serif;
+background-color: #F9F8F6;
+overflow-x: hidden;
+position: relative;
+        }
+.tagline-font {
+font-family: 'Courier New', monospace;
+font-style: italic;
+font-weight: 500;
+        }
+/* Floating graduation caps */
+.floating-cap {
+position: fixed;
+font-size: 40px;
+color: rgba(55, 53, 62, 0.2);
+pointer-events: none;
+z-index: 1;
+filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+/* Navigation */
+.navbar {
+background-color: rgba(192, 192, 192, 0.95) !important;
+backdrop-filter: blur(10px);
+box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+padding: 15px 0;
+        }
+.navbar-brand {
+font-weight: 700;
+color: #37353E !important;
+font-size: 1.8rem;
+        }
+.navbar-brand i {
+margin-right: 5px;
+        }
+.nav-link {
+color: #37353E !important;
+font-weight: 500;
+margin: 0 15px;
+transition: all 0.3s ease;
+position: relative;
+        }
+.nav-link:hover {
+color: #7A7A73 !important;
+        }
+.nav-link::after {
+content: '';
+position: absolute;
+width: 0;
+height: 2px;
+bottom: -5px;
+left: 50%;
+background-color: #37353E;
+transition: all 0.3s ease;
+transform: translateX(-50%);
+        }
+.nav-link:hover::after {
+width: 100%;
+        }
+/* Hero Section */
+.hero-section {
+min-height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 80px 0;
+position: relative;
+        }
+.hero-content {
+text-align: center;
+z-index: 10;
+        }
+.hero-title {
+font-size: 3.5rem;
+font-weight: 700;
+color: #37353E;
+margin-bottom: 20px;
+        }
+.hero-tagline {
+font-size: 1.8rem;
+color: #7A7A73;
+margin-bottom: 30px;
+        }
+.grad-cap-icon {
+font-size: 3rem;
+color: #37353E;
+margin-left: 15px;
+animation: float 3s ease-in-out infinite;
+        }
+@keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+/* Profile Photo */
+.profile-photo {
+width: 200px;
+height: 200px;
+border-radius: 50%;
+object-fit: cover;
+border: 5px solid #37353E;
+box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+margin-bottom: 30px;
+        }
+/* Contact Icons */
+.contact-section {
+margin-top: 50px;
+        }
+.contact-icons {
+display: flex;
+justify-content: center;
+gap: 30px;
+flex-wrap: wrap;
+        }
+.contact-icon {
+font-size: 2.5rem;
+color: #37353E;
+transition: all 0.3s ease;
+cursor: pointer;
+        }
+.contact-icon:hover {
+transform: scale(1.2) rotate(5deg);
+color: #7A7A73;
+        }
+/* Profile Section */
+.profile-section {
+padding: 80px 0;
+background: linear-gradient(135deg, #37353E 0%, #4a4851 100%);
+color: #F9F8F6;
+min-height: 100vh;
+display: flex;
+align-items: center;
+position: relative;
+        }
+.profile-section::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="fotokarinadya.jpeg"><rect width="2" height="2" x="0" y="0" fill="%23F9F8F6" opacity="0.05"/></svg>');
+pointer-events: none;
+        }
+.profile-card {
+background: linear-gradient(145deg, rgba(249, 248, 246, 0.08), rgba(249, 248, 246, 0.02));
+border: 1px solid rgba(249, 248, 246, 0.15);
+border-radius: 30px;
+padding: 50px;
+backdrop-filter: blur(20px);
+box-shadow: 
+0 20px 60px rgba(0,0,0,0.3),
+inset 0 1px 0 rgba(249, 248, 246, 0.1);
+position: relative;
+overflow: hidden;
+        }
+.profile-card::before {
+content: '';
+position: absolute;
+top: -50%;
+right: -50%;
+width: 200%;
+height: 200%;
+background: radial-gradient(circle, rgba(249, 248, 246, 0.03) 0%, transparent 70%);
+pointer-events: none;
+        }
+.profile-frame {
+border: 2px solid rgba(249, 248, 246, 0.2);
+padding: 40px;
+border-radius: 20px;
+margin-bottom: 0;
+background: rgba(249, 248, 246, 0.03);
+position: relative;
+        }
+.profile-frame::after {
+content: '';
+position: absolute;
+top: 10px;
+left: 10px;
+right: 10px;
+bottom: 10px;
+border: 1px solid rgba(249, 248, 246, 0.05);
+border-radius: 15px;
+pointer-events: none;
+        }
+.profile-item {
+margin-bottom: 30px;
+padding: 20px;
+background: rgba(249, 248, 246, 0.03);
+border-radius: 12px;
+border-left: 3px solid rgba(249, 248, 246, 0.3);
+transition: all 0.3s ease;
+        }
+.profile-item:hover {
+background: rgba(249, 248, 246, 0.06);
+border-left-color: #F9F8F6;
+transform: translateX(5px);
+        }
+.profile-item:last-child {
+margin-bottom: 0;
+        }
+.profile-label {
+font-weight: 600;
+color: rgba(249, 248, 246, 0.6);
+font-size: 0.85rem;
+text-transform: uppercase;
+letter-spacing: 2px;
+margin-bottom: 8px;
+display: flex;
+align-items: center;
+        }
+.profile-label::before {
+content: '◆';
+margin-right: 10px;
+color: rgba(249, 248, 246, 0.4);
+font-size: 0.7rem;
+        }
+.profile-value {
+font-size: 1.4rem;
+font-weight: 500;
+color: #F9F8F6;
+letter-spacing: 0.5px;
+        }
+/* About Section */
+.about-section {
+padding: 80px 0;
+background-color: #F9F8F6;
+min-height: 100vh;
+        }
+.about-card {
+background-color: white;
+border-radius: 20px;
+padding: 40px;
+box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+.section-title {
+font-size: 2.5rem;
+font-weight: 700;
+color: #37353E;
+margin-bottom: 30px;
+text-align: center;
+        }
+.about-text {
+font-size: 1.1rem;
+line-height: 1.8;
+color: #37353E;
+text-align: justify;
+        }
+.experience-item {
+margin-bottom: 25px;
+padding: 20px;
+background-color: #F9F8F6;
+border-radius: 10px;
+border-left: 4px solid #37353E;
+        }
+.experience-title {
+font-weight: 600;
+color: #37353E;
+font-size: 1.2rem;
+margin-bottom: 5px;
+        }
+.experience-desc {
+color: #7A7A73;
+font-size: 0.95rem;
+        }
+/* Projects Section */
+.projects-section {
+padding: 80px 0;
+background: linear-gradient(135deg, #37353E 0%, #4a4851 100%);
+min-height: 100vh;
+        }
+.project-card {
+background-color: white;
+border-radius: 20px;
+padding: 30px;
+box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+margin-bottom: 30px;
+transition: transform 0.3s ease;
+        }
+.project-card:hover {
+transform: translateY(-10px);
+        }
+.project-title {
+font-size: 1.5rem;
+font-weight: 600;
+color: #37353E;
+margin-bottom: 20px;
+text-align: center;
+        }
+.video-container {
+position: relative;
+width: 100%;
+padding-bottom: 56.25%; /* 16:9 aspect ratio */
+height: 0;
+overflow: hidden;
+border-radius: 10px;
+        }
+.video-container iframe {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+border: 0;
+        }
+/* Footer */
+footer {
+background-color: #7A7A73;
+color: #F9F8F6;
+padding: 30px 0;
+text-align: center;
+        }
+/* Responsive */
+@media (max-width: 768px) {
+.hero-title {
+font-size: 2rem;
+            }
+.hero-tagline {
+font-size: 1.2rem;
+            }
+.grad-cap-icon {
+font-size: 2rem;
+            }
+.contact-icon {
+font-size: 2rem;
+            }
+.section-title {
+font-size: 2rem;
+            }
+.profile-photo {
+width: 150px;
+height: 150px;
+            }
+        }
+/* Smooth scroll */
+html {
+scroll-behavior: smooth;
+        }
+</style>
+</head>
+<body>
+<!-- Floating Graduation Caps -->
+<div id="floating-caps-container"></div>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+<div class="container">
+<a class="navbar-brand" href="#beranda">
+<i class="fas fa-user-graduate"></i> Karina Dya
+</a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+<ul class="navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="#beranda">Beranda</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#profil">Profil</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#tentang">Tentang</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#project">Project</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<!-- Hero Section / Beranda -->
+<section id="beranda" class="hero-section">
+<div class="container">
+<div class="hero-content">
+<img src="https://via.placeholder.com/200" alt="Foto Karina Dya Maharani" class="profile-photo">
+<h1 class="hero-title">Karina Dya Maharani</h1>
+<p class="hero-tagline tagline-font">
+                    Empowering Digital Innovation
+<i class="fas fa-graduation-cap grad-cap-icon"></i>
+</p>
+<div class="contact-section">
+<h3 style="color: #37353E; margin-bottom: 30px;">Hubungi Saya</h3>
+<div class="contact-icons">
+<a href="https://wa.me/6289509631956" target="_blank" class="contact-icon" title="WhatsApp">
+<i class="fab fa-whatsapp"></i>
+</a>
+<a href="https://www.linkedin.com" target="_blank" class="contact-icon" title="LinkedIn">
+<i class="fab fa-linkedin"></i>
+</a>
+<a href="mailto:karinadyagortugas@gmail.com" class="contact-icon" title="Email">
+<i class="fas fa-envelope"></i>
+</a>
+<a href="https://www.instagram.com/karinadyya" target="_blank" class="contact-icon" title="Instagram">
+<i class="fab fa-instagram"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Profile Section -->
+<section id="profil" class="profile-section">
+<div class="container">
+<div class="row justify-content-center">
+<div class="col-lg-8">
+<h2 class="section-title" style="color: #F9F8F6; margin-bottom: 40px;">Profil Saya</h2>
+<div class="profile-card">
+<div class="profile-frame">
+<div class="profile-item">
+<div class="profile-label">Nama</div>
+<div class="profile-value">Karina Dya Maharani</div>
+</div>
+<div class="profile-item">
+<div class="profile-label">Program Studi</div>
+<div class="profile-value">Bisnis Digital</div>
+</div>
+<div class="profile-item">
+<div class="profile-label">Semester</div>
+<div class="profile-value">5</div>
+</div>
+<div class="profile-item">
+<div class="profile-label">Status</div>
+<div class="profile-value">Mahasiswa Aktif</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- About Section -->
+<section id="tentang" class="about-section">
+<div class="container">
+<div class="row justify-content-center">
+<div class="col-lg-10">
+<div class="about-card">
+<h2 class="section-title">Tentang Saya</h2>
+<p class="about-text">
+                            Saya adalah mahasiswa Bisnis Digital semester 5 yang memiliki passion dalam mengembangkan inovasi digital dan manajemen organisasi. Dengan pengalaman di berbagai posisi kepemimpinan dan pengelolaan keuangan, saya berkomitmen untuk terus belajar dan berkembang di bidang teknologi dan bisnis digital.
+</p>
+<p class="about-text" style="margin-top: 20px;">
+                            Selama perjalanan akademis saya, saya telah terlibat aktif dalam berbagai kegiatan organisasi kampus, termasuk menjadi Bendahara BEM, Sekretaris Seminar dan Workshop Kewirausahaan, serta Bendahara di berbagai event lainnya. Pengalaman-pengalaman ini telah mengasah kemampuan saya dalam manajemen keuangan, koordinasi tim, dan pengelolaan acara skala besar.
+</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Projects Section -->
+<section id="project" class="projects-section">
+<div class="container">
+<h2 class="section-title" style="color: #F9F8F6; margin-bottom: 50px;">Project Saya</h2>
+<div class="row">
+<div class="col-lg-6 mb-4">
+<div class="project-card">
+<h3 class="project-title">Project 1</h3>
+<div class="video-container">
+<iframe src="https://www.youtube.com/embed/U88nGi4uMkw" allowfullscreen></iframe>
+</div>
+</div>
+</div>
+<div class="col-lg-6 mb-4">
+<div class="project-card">
+<h3 class="project-title">Project 2</h3>
+<div class="video-container">
+<iframe src="https://www.youtube.com/embed/UGLQ_cgXL8s" allowfullscreen></iframe>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer>
+<div class="container">
+<p style="margin: 0;">&copy; 2024 Karina Dya Maharani. All Rights Reserved.</p>
+<p style="margin-top: 10px; font-size: 0.9rem;">Bisnis Digital | Semester 5</p>
+</div>
+</footer>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// Create floating graduation caps
+function createFloatingCaps() {
+const container = document.getElementById('floating-caps-container');
+const numberOfCaps = 20;
+for (let i = 0; i < numberOfCaps; i++) {
+const cap = document.createElement('div');
+cap.className = 'floating-cap';
+cap.innerHTML = '<i class="fas fa-graduation-cap"></i>';
+cap.style.left = Math.random() * 100 + '%';
+cap.style.top = Math.random() * 100 + '%';
+container.appendChild(cap);
+            }
+        }
+// Animate floating caps with anime.js
+function animateFloatingCaps() {
+const caps = document.querySelectorAll('.floating-cap');
+caps.forEach((cap, index) => {
+anime({
+targets: cap,
+translateX: [
+                        { value: () => anime.random(-200, 200), duration: 3000 },
+                        { value: () => anime.random(-200, 200), duration: 3000 }
+                    ],
+translateY: [
+                        { value: () => anime.random(-200, 200), duration: 3000 },
+                        { value: () => anime.random(-200, 200), duration: 3000 }
+                    ],
+rotate: [
+                        { value: () => anime.random(-180, 180), duration: 2000 },
+                        { value: () => anime.random(-180, 180), duration: 2000 }
+                    ],
+scale: [
+                        { value: () => anime.random(0.8, 1.2), duration: 2000 },
+                        { value: () => anime.random(0.8, 1.2), duration: 2000 }
+                    ],
+easing: 'easeInOutQuad',
+loop: true,
+delay: index * 200
+                });
+            });
+        }
+// Animate contact icons
+function animateContactIcons() {
+anime({
+targets: '.contact-icon',
+scale: [0, 1],
+opacity: [0, 1],
+translateY: [50, 0],
+delay: anime.stagger(100),
+duration: 800,
+easing: 'easeOutElastic(1, .8)'
+            });
+        }
+// Animate sections on scroll
+function animateOnScroll() {
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+anime({
+targets: entry.target,
+opacity: [0, 1],
+translateY: [50, 0],
+duration: 1000,
+easing: 'easeOutExpo'
+                        });
+observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+document.querySelectorAll('.profile-card, .about-card, .project-card').forEach(el => {
+observer.observe(el);
+            });
+        }
+// Smooth scroll for navigation
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function (e) {
+e.preventDefault();
+const target = document.querySelector(this.getAttribute('href'));
+if (target) {
+target.scrollIntoView({
+behavior: 'smooth',
+block: 'start'
+                    });
+                }
+            });
+        });
+// Initialize animations
+document.addEventListener('DOMContentLoaded', function() {
+createFloatingCaps();
+animateFloatingCaps();
+animateContactIcons();
+animateOnScroll();
+// Animate hero title
+anime({
+targets: '.hero-title',
+opacity: [0, 1],
+translateY: [-50, 0],
+duration: 1200,
+easing: 'easeOutExpo'
+            });
+// Animate hero tagline
+anime({
+targets: '.hero-tagline',
+opacity: [0, 1],
+translateY: [-30, 0],
+duration: 1200,
+delay: 300,
+easing: 'easeOutExpo'
+            });
+
+// Animate profile photo
+anime({
+targets: '.profile-photo',
+opacity: [0, 1],
+scale: [0.5, 1],
+duration: 1200,
+easing: 'easeOutElastic(1, .6)'
+            });
+        });
+// Add bounce animation to contact icons on hover
+document.querySelectorAll('.contact-icon').forEach(icon => {
+icon.addEventListener('mouseenter', function() {
+anime({
+targets: this,
+scale: [1, 1.2],
+duration: 300,
+easing: 'easeOutElastic(1, .6)'
+                });
+            });
+icon.addEventListener('mouseleave', function() {
+anime({
+targets: this,
+scale: [1.2, 1],
+duration: 300,
+easing: 'easeOutElastic(1, .6)'
+                });
+            });
+        });
+</script>
+</body>
+</html>

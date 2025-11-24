@@ -3,617 +3,936 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#A1BC98">
-    <meta name="description" content="Ilyn - Elegansi Muslim, Inspirasi Ilyn">
-    <title>Ilyn - Fashion Muslim Modern</title>
+    <title>Portofolio Karina Dya Maharani</title>
     
-    <!-- Bootstrap 5 -->
+    <!-- Bootstrap 5 CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <!-- Anime.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     
-    <link rel="manifest" href="#" id="manifest-placeholder">
-    
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         :root {
-            --primary: #A1BC98;
-            --search: #FEF3E2;
-            --layout: #E3DFC8;
+            --primary: #7F8CAA;
+            --secondary: #D9EAFD;
+            --dark: #1D1616;
         }
-        
+
         body {
-            background-color: var(--primary);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            padding-bottom: 70px;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ffffff 0%, var(--secondary) 50%, #ffffff 100%);
+            color: var(--dark);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
         }
-        
-        .navbar {
-            background-color: var(--layout) !important;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .search-bar {
-            background-color: var(--search);
-            border-radius: 25px;
-            padding: 10px 20px;
-            border: none;
-        }
-        
-        .category-card {
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-            margin: 10px 0;
-            cursor: pointer;
-            transition: transform 0.3s;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-        
-        .category-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .product-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            margin: 10px 0;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-        
-        .product-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            background: linear-gradient(135deg, #E3DFC8, #A1BC98);
-        }
-        
-        .bottom-nav {
+
+        /* Floating Graduation Caps */
+        .floating-cap {
             position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: var(--layout);
-            padding: 10px 0;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            font-size: 2.5rem;
+            color: var(--primary);
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .cap-1 { top: 10%; left: 5%; font-size: 3rem; }
+        .cap-2 { top: 20%; right: 10%; font-size: 2rem; }
+        .cap-3 { top: 50%; left: 15%; font-size: 2.5rem; }
+        .cap-4 { top: 70%; right: 8%; font-size: 3.5rem; }
+        .cap-5 { top: 30%; right: 25%; font-size: 2rem; }
+        .cap-6 { bottom: 15%; left: 8%; font-size: 2.8rem; }
+        .cap-7 { top: 60%; left: 5%; font-size: 2.2rem; }
+        .cap-8 { top: 85%; right: 20%; font-size: 2.5rem; }
+        .cap-9 { top: 40%; right: 5%; font-size: 3rem; }
+        .cap-10 { bottom: 30%; right: 15%; font-size: 2.3rem; }
+
+        /* Floating Particles */
+        .particle {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle-1 {
+            width: 100px;
+            height: 100px;
+            background: rgba(127, 140, 170, 0.08);
+            top: 15%;
+            left: 10%;
+        }
+
+        .particle-2 {
+            width: 70px;
+            height: 70px;
+            background: rgba(217, 234, 253, 0.3);
+            top: 65%;
+            right: 12%;
+        }
+
+        .particle-3 {
+            width: 120px;
+            height: 120px;
+            background: rgba(127, 140, 170, 0.06);
+            bottom: 25%;
+            left: 18%;
+        }
+
+        .particle-4 {
+            width: 60px;
+            height: 60px;
+            background: rgba(217, 234, 253, 0.25);
+            top: 45%;
+            right: 28%;
+        }
+
+        .particle-5 {
+            width: 90px;
+            height: 90px;
+            background: rgba(127, 140, 170, 0.1);
+            top: 28%;
+            right: 8%;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+            padding: 1.3rem 0;
+            position: sticky;
+            top: 0;
             z-index: 1000;
         }
-        
-        .nav-item-custom {
-            text-align: center;
+
+        .nav-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-brand i {
+            font-size: 1.5rem;
+        }
+
+        .nav-brand:hover {
+            color: var(--dark);
+            transform: scale(1.05);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05rem;
+            position: relative;
+            transition: color 0.3s ease;
             cursor: pointer;
-            padding: 5px;
-            transition: all 0.3s;
         }
-        
-        .nav-item-custom:hover {
-            transform: scale(1.1);
-        }
-        
-        .nav-item-custom.active {
-            color: #2d5016;
-        }
-        
-        .badge-notif {
+
+        .nav-link::after {
+            content: '';
             position: absolute;
-            top: -5px;
-            right: -5px;
-            background: #dc3545;
-            border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            font-size: 10px;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 92vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+            z-index: 2;
+            padding: 3rem 1rem;
         }
-        
-        .filter-chip {
+
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-cap-icon {
+            font-size: 5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
             display: inline-block;
-            padding: 8px 15px;
-            margin: 5px;
-            background: white;
-            border-radius: 20px;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: all 0.3s;
         }
-        
-        .filter-chip.active {
+
+        .hero-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+            font-style: italic;
+        }
+
+        .hero-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.8rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: #666;
+            font-weight: 300;
+            margin-bottom: 2.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            gap: 1.8rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.5rem;
+            text-decoration: none;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            transform: scale(0);
+            transition: transform 0.4s ease;
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .social-link:hover::before {
+            transform: scale(1);
+        }
+
+        .social-link:hover {
+            transform: translateY(-8px) rotate(5deg);
+            box-shadow: 0 10px 30px rgba(127, 140, 170, 0.4);
+            color: white;
+        }
+
+        /* Content Section */
+        .content-section {
+            display: none;
+            min-height: 85vh;
+            padding: 4rem 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 3.5rem;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+            max-width: 850px;
+            margin: 0 auto;
+            backdrop-filter: blur(10px);
+        }
+
+        .content-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin-bottom: 2.5rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .content-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .profile-info {
+            display: grid;
+            gap: 1.8rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            padding: 1.3rem;
+            background: linear-gradient(135deg, var(--secondary) 0%, rgba(255, 255, 255, 0.9) 100%);
+            border-radius: 15px;
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+        }
+
+        .info-item:hover {
+            transform: translateX(15px);
+            border-color: var(--primary);
+            box-shadow: 0 5px 20px rgba(127, 140, 170, 0.2);
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
             background: var(--primary);
             color: white;
-            border-color: #2d5016;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
         }
-        
-        .notif-item {
-            background: white;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
+
+        .info-label {
+            font-weight: 600;
+            color: var(--primary);
+            min-width: 140px;
+            font-size: 1.05rem;
         }
-        
-        .notif-item:hover {
-            background: var(--search);
+
+        .info-value {
+            color: var(--dark);
+            font-size: 1.05rem;
         }
-        
-        .notif-item.unread {
-            border-left: 4px solid #dc3545;
+
+        .about-text {
+            font-size: 1.15rem;
+            line-height: 2.2;
+            color: #555;
+            text-align: justify;
+            margin-bottom: 2rem;
+            text-indent: 2rem;
+        }
+
+        .social-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--secondary);
+        }
+
+        .social-section-title {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
             font-weight: 600;
         }
-        
-        .store-card {
-            background: white;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        
-        .hero-section {
-            background: linear-gradient(135deg, var(--layout), var(--primary));
-            padding: 30px 20px;
-            border-radius: 15px;
-            margin: 20px 0;
-            color: #2d5016;
-            text-align: center;
-        }
-        
-        .page {
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
             display: none;
+            background: none;
+            border: none;
+            font-size: 1.6rem;
+            color: var(--primary);
+            cursor: pointer;
         }
-        
-        .page.active {
-            display: block;
+
+        @media (max-width: 768px) {
+            .hero-tagline {
+                font-size: 2.2rem;
+            }
+
+            .hero-name {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .hero-cap-icon {
+                font-size: 3.5rem;
+            }
+
+            .floating-cap {
+                font-size: 1.8rem !important;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .content-card {
+                padding: 2.5rem 1.8rem;
+            }
+
+            .info-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .info-label {
+                min-width: auto;
+            }
+
+            .content-title {
+                font-size: 2.2rem;
+            }
+
+            .about-text {
+                font-size: 1rem;
+                text-indent: 1rem;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2.5rem 0;
+            margin-top: 5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        /* Decorative Elements */
+        .deco-circle {
+            position: fixed;
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .deco-circle-1 {
+            width: 350px;
+            height: 350px;
+            top: -120px;
+            right: -120px;
+        }
+
+        .deco-circle-2 {
+            width: 250px;
+            height: 250px;
+            bottom: 40px;
+            left: -70px;
+        }
+
+        .deco-circle-3 {
+            width: 200px;
+            height: 200px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-light sticky-top">
-        <div class="container-fluid">
-            <span class="navbar-brand mb-0 h1"><i class="bi bi-heart-fill text-danger"></i> Ilyn</span>
-            <span class="text-muted small">Elegansi Muslim, Inspirasi Ilyn</span>
+    <!-- Floating Graduation Caps -->
+    <i class="fas fa-graduation-cap floating-cap cap-1"></i>
+    <i class="fas fa-graduation-cap floating-cap cap-2"></i>
+    <i class="fas fa-graduation-cap floating-cap cap-3"></i>
+    <i class="fas fa-graduation-cap floating-cap cap-4"></i>
+    <i class="fas fa-graduation-cap floating-cap cap-5"></i>
+    <i class="fas fa-graduation-cap floating-cap cap-6"></i>
+    <i class="fas fa-graduation-cap floating-cap cap-7"></i>
+    <i class="fas fa-graduation-cap floating-cap cap-8"></i>
+    <i class="fas fa-graduation-cap floating-cap cap-9"></i>
+    <i class="fas fa-graduation-cap floating-cap cap-10"></i>
+
+    <!-- Floating Particles -->
+    <div class="particle particle-1"></div>
+    <div class="particle particle-2"></div>
+    <div class="particle particle-3"></div>
+    <div class="particle particle-4"></div>
+    <div class="particle particle-5"></div>
+
+    <!-- Decorative Circles -->
+    <div class="deco-circle deco-circle-1"></div>
+    <div class="deco-circle deco-circle-2"></div>
+    <div class="deco-circle deco-circle-3"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="#" class="nav-brand" onclick="showHome()">
+                    <i class="fas fa-graduation-cap"></i> KD
+                </a>
+                <button class="mobile-menu-toggle" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a class="nav-link" onclick="showHome()">Beranda</a></li>
+                    <li><a class="nav-link" onclick="showProfile()">Profil</a></li>
+                    <li><a class="nav-link" onclick="showAbout()">Tentang</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
 
-    <div class="container mt-3">
-        <!-- Beranda Page -->
-        <div id="homePage" class="page active">
-            <div class="hero-section">
-                <h2 class="fw-bold">Selamat Datang di Ilyn</h2>
-                <p class="mb-0">Temukan gaya muslim modern-mu!</p>
-            </div>
-            
-            <!-- Search Bar -->
-            <div class="mb-4">
-                <input type="text" id="searchInput" class="form-control search-bar" placeholder="🔍 Cari produk...">
-                <div id="searchSuggestions" class="mt-2"></div>
-            </div>
-            
-            <!-- Filters -->
-            <div class="mb-3">
-                <h5>Kategori</h5>
-                <div id="categoryFilters">
-                    <span class="filter-chip active" data-value="all">Semua</span>
-                    <span class="filter-chip" data-value="pria">Pria</span>
-                    <span class="filter-chip" data-value="wanita">Wanita</span>
-                </div>
-            </div>
-            
-            <div class="mb-3">
-                <h5>Ukuran</h5>
-                <div id="sizeFilters">
-                    <span class="filter-chip active" data-value="all">Semua</span>
-                    <span class="filter-chip" data-value="S">S</span>
-                    <span class="filter-chip" data-value="M">M</span>
-                    <span class="filter-chip" data-value="L">L</span>
-                    <span class="filter-chip" data-value="XL">XL</span>
-                </div>
-            </div>
-            
-            <div class="mb-3">
-                <h5>Harga</h5>
-                <div id="priceFilters">
-                    <span class="filter-chip active" data-value="all">Semua</span>
-                    <span class="filter-chip" data-value="0-200000">< 200rb</span>
-                    <span class="filter-chip" data-value="200000-500000">200rb - 500rb</span>
-                    <span class="filter-chip" data-value="500000-999999">> 500rb</span>
-                </div>
-            </div>
-            
-            <!-- Products -->
-            <h5 class="mt-4">Produk</h5>
-            <div id="productList" class="row"></div>
-        </div>
-
-        <!-- Notifikasi Page -->
-        <div id="notifPage" class="page">
-            <h3 class="mb-4">Notifikasi</h3>
-            <div id="notifList"></div>
-        </div>
-
-        <!-- Lokasi Page -->
-        <div id="locationPage" class="page">
-            <h3 class="mb-4">Lokasi Toko</h3>
-            <div class="alert alert-info">
-                <i class="bi bi-info-circle"></i> Toko terdekat berdasarkan lokasimu
-            </div>
-            <div id="storeList"></div>
-        </div>
-
-        <!-- Search Results Page -->
-        <div id="searchPage" class="page">
-            <h3 class="mb-4">Hasil Pencarian</h3>
-            <div id="searchResults" class="row"></div>
-        </div>
-    </div>
-
-    <!-- Bottom Navigation -->
-    <div class="bottom-nav">
+    <!-- Home Section -->
+    <section class="hero-section" id="homeSection">
         <div class="container">
-            <div class="row text-center">
-                <div class="col nav-item-custom active" data-page="homePage">
-                    <i class="bi bi-house-door-fill fs-4"></i>
-                    <div class="small">Beranda</div>
-                </div>
-                <div class="col nav-item-custom" data-page="searchPage">
-                    <i class="bi bi-search fs-4"></i>
-                    <div class="small">Cari</div>
-                </div>
-                <div class="col nav-item-custom position-relative" data-page="notifPage">
-                    <i class="bi bi-bell-fill fs-4"></i>
-                    <span class="badge-notif" id="notifBadge">3</span>
-                    <div class="small">Notifikasi</div>
-                </div>
-                <div class="col nav-item-custom" data-page="locationPage">
-                    <i class="bi bi-geo-alt-fill fs-4"></i>
-                    <div class="small">Toko</div>
+            <div class="hero-content">
+                <i class="fas fa-graduation-cap hero-cap-icon"></i>
+                <h1 class="hero-tagline">"Embracing Innovation, Creating Tomorrow"</h1>
+                <h2 class="hero-name">Karina Dya Maharani</h2>
+                <p class="hero-subtitle">Digital Business Enthusiast | Future Entrepreneur</p>
+                
+                <div class="social-links">
+                    <a href="https://wa.me/6289509631956" target="_blank" class="social-link" title="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="mailto:karinadyagortugas@gmail.com" class="social-link" title="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://instagram.com/karinadyya" target="_blank" class="social-link" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" class="social-link" title="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
+    <!-- Profile Section -->
+    <section class="content-section" id="profileSection">
+        <div class="container">
+            <div class="content-card">
+                <h2 class="content-title">Profil Saya</h2>
+                <div class="profile-info">
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-user"></i></div>
+                        <div class="info-label">Nama Lengkap</div>
+                        <div class="info-value">Karina Dya Maharani</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <div class="info-label">Program Studi</div>
+                        <div class="info-value">Bisnis Digital</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-calendar-alt"></i></div>
+                        <div class="info-label">Semester</div>
+                        <div class="info-value">5 (Lima)</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-check-circle"></i></div>
+                        <div class="info-label">Status Akademik</div>
+                        <div class="info-value">Mahasiswa Aktif</div>
+                    </div>
+                </div>
+
+                <div class="social-section">
+                    <h5 class="social-section-title">Terhubung dengan Saya</h5>
+                    <div class="social-links">
+                        <a href="https://wa.me/6289509631956" target="_blank" class="social-link" title="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="mailto:karinadyagortugas@gmail.com" class="social-link" title="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://instagram.com/karinadyya" target="_blank" class="social-link" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" class="social-link" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="content-section" id="aboutSection">
+        <div class="container">
+            <div class="content-card">
+                <h2 class="content-title">Tentang Saya</h2>
+                
+                <p class="about-text">
+                    Saya adalah mahasiswa Bisnis Digital semester lima yang memiliki visi untuk berkontribusi dalam transformasi digital Indonesia. Dengan kombinasi pengetahuan akademis yang solid dan semangat untuk terus belajar, saya berkomitmen untuk mengembangkan kompetensi di bidang strategi bisnis digital, analisis data, dan inovasi teknologi.
+                </p>
+                
+                <p class="about-text">
+                    Perjalanan akademis saya telah membentuk pemahaman mendalam tentang ekosistem bisnis digital modern, mulai dari e-commerce, digital marketing, hingga manajemen strategis berbasis teknologi. Saya percaya bahwa di era digital ini, kemampuan untuk beradaptasi, berpikir kritis, dan berkolaborasi merupakan kunci kesuksesan dalam membangun solusi bisnis yang inovatif dan berkelanjutan.
+                </p>
+                
+                <p class="about-text">
+                    Saya memiliki ketertarikan khusus pada pengembangan strategi pemasaran digital, analisis perilaku konsumen, dan implementasi teknologi untuk meningkatkan efisiensi operasional bisnis. Melalui berbagai proyek dan pembelajaran, saya terus mengasah kemampuan dalam mengidentifikasi peluang pasar, merancang strategi yang efektif, dan mengimplementasikan solusi yang memberikan nilai tambah.
+                </p>
+                
+                <p class="about-text">
+                    Saya terbuka untuk peluang magang, kolaborasi proyek, dan networking profesional yang dapat memperkaya pengalaman serta berkontribusi pada perkembangan industri digital. Mari bersama-sama menciptakan inovasi dan memberikan dampak positif melalui transformasi digital.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Karina Dya Maharani. All Rights Reserved.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">Crafted with passion and innovation</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+
     <script>
-        // Data Produk
-        const products = [
-            {id: 1, name: 'Gamis Elegan', category: 'wanita', size: ['S', 'M', 'L', 'XL'], price: 350000, image: ''},
-            {id: 2, name: 'Kemeja Koko Premium', category: 'pria', size: ['M', 'L', 'XL'], price: 280000, image: ''},
-            {id: 3, name: 'Tunik Modern', category: 'wanita', size: ['S', 'M', 'L'], price: 180000, image: ''},
-            {id: 4, name: 'Baju Koko Casual', category: 'pria', size: ['S', 'M', 'L', 'XL'], price: 220000, image: ''},
-            {id: 5, name: 'Hijab Premium', category: 'wanita', size: ['All'], price: 75000, image: ''},
-            {id: 6, name: 'Sarung Wadimor', category: 'pria', size: ['All'], price: 150000, image: ''},
-            {id: 7, name: 'Dress Syari', category: 'wanita', size: ['M', 'L', 'XL'], price: 420000, image: ''},
-            {id: 8, name: 'Jubah Arab', category: 'pria', size: ['L', 'XL'], price: 550000, image: ''},
-        ];
+        // Navigation Functions
+        function showHome() {
+            document.getElementById('homeSection').style.display = 'flex';
+            document.getElementById('profileSection').classList.remove('active');
+            document.getElementById('aboutSection').classList.remove('active');
+            closeMenu();
+            animateContent();
+            saveToLocalStorage('currentPage', 'home');
+        }
 
-        // Data Notifikasi
-        let notifications = [
-            {id: 1, title: 'Diskon 50%!', message: 'Promo spesial untuk koleksi ramadan', read: false, date: '2 jam lalu'},
-            {id: 2, title: 'Produk Baru', message: 'Koleksi gamis terbaru sudah tersedia', read: false, date: '5 jam lalu'},
-            {id: 3, title: 'Pesanan Dikirim', message: 'Pesananmu sedang dalam perjalanan', read: false, date: '1 hari lalu'},
-        ];
+        function showProfile() {
+            document.getElementById('homeSection').style.display = 'none';
+            document.getElementById('profileSection').classList.add('active');
+            document.getElementById('aboutSection').classList.remove('active');
+            closeMenu();
+            animateContent();
+            saveToLocalStorage('currentPage', 'profile');
+        }
 
-        // Data Toko
-        const stores = [
-            {id: 1, name: 'Ilyn Store Jakarta Pusat', address: 'Jl. Thamrin No. 10, Jakarta Pusat', distance: '2.5 km', phone: '021-12345678'},
-            {id: 2, name: 'Ilyn Store Bandung', address: 'Jl. Braga No. 25, Bandung', distance: '150 km', phone: '022-87654321'},
-            {id: 3, name: 'Ilyn Store Surabaya', address: 'Jl. Pemuda No. 5, Surabaya', distance: '750 km', phone: '031-11223344'},
-        ];
+        function showAbout() {
+            document.getElementById('homeSection').style.display = 'none';
+            document.getElementById('profileSection').classList.remove('active');
+            document.getElementById('aboutSection').classList.add('active');
+            closeMenu();
+            animateContent();
+            saveToLocalStorage('currentPage', 'about');
+        }
 
-        // State Management
-        let filters = {
-            category: 'all',
-            size: 'all',
-            price: 'all',
-            search: ''
-        };
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('active');
+        }
 
-        // Load preferences
-        const savedFilters = JSON.parse(localStorage.getItem('ilynFilters') || '{}');
-        filters = {...filters, ...savedFilters};
+        function closeMenu() {
+            document.getElementById('navMenu').classList.remove('active');
+        }
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            renderProducts();
-            renderNotifications();
-            renderStores();
-            setupEventListeners();
-            animateEntrance();
-            registerServiceWorker();
-            updateNotifBadge();
+        // LocalStorage Functions
+        function saveToLocalStorage(key, value) {
+            localStorage.setItem(key, value);
+        }
+
+        function getFromLocalStorage(key) {
+            return localStorage.getItem(key);
+        }
+
+        // Animations
+        function animateContent() {
+            anime({
+                targets: '.content-card',
+                opacity: [0, 1],
+                translateY: [60, 0],
+                duration: 1000,
+                easing: 'easeOutExpo'
+            });
+
+            anime({
+                targets: '.info-item',
+                opacity: [0, 1],
+                translateX: [-40, 0],
+                delay: anime.stagger(120),
+                duration: 700,
+                easing: 'easeOutExpo'
+            });
+
+            anime({
+                targets: '.about-text',
+                opacity: [0, 1],
+                translateY: [30, 0],
+                delay: anime.stagger(150),
+                duration: 800,
+                easing: 'easeOutExpo'
+            });
+        }
+
+        // Initial Animations
+        window.addEventListener('load', function() {
+            // Check localStorage for last visited page
+            const lastPage = getFromLocalStorage('currentPage');
+            if (lastPage === 'profile') {
+                showProfile();
+            } else if (lastPage === 'about') {
+                showAbout();
+            }
+
+            // Hero Cap Animation
+            anime({
+                targets: '.hero-cap-icon',
+                opacity: [0, 1],
+                scale: [0, 1],
+                rotate: [-180, 0],
+                duration: 1500,
+                easing: 'easeOutElastic(1, .6)'
+            });
+
+            // Hero Tagline Animation
+            anime({
+                targets: '.hero-tagline',
+                opacity: [0, 1],
+                translateY: [-30, 0],
+                delay: 300,
+                duration: 1200,
+                easing: 'easeOutExpo'
+            });
+
+            // Hero Name Animation
+            anime({
+                targets: '.hero-name',
+                opacity: [0, 1],
+                translateX: [-50, 0],
+                delay: 600,
+                duration: 1000,
+                easing: 'easeOutExpo'
+            });
+
+            // Hero Subtitle Animation
+            anime({
+                targets: '.hero-subtitle',
+                opacity: [0, 1],
+                translateY: [30, 0],
+                delay: 900,
+                duration: 1000,
+                easing: 'easeOutExpo'
+            });
+
+            // Social Links Animation
+            anime({
+                targets: '.social-link',
+                opacity: [0, 1],
+                scale: [0, 1],
+                rotate: [180, 0],
+                delay: anime.stagger(120, {start: 1200}),
+                duration: 700,
+                easing: 'easeOutElastic(1, .8)'
+            });
+
+            // Floating Graduation Caps Animation
+            anime({
+                targets: '.floating-cap',
+                translateY: [
+                    { value: -30, duration: 2500 },
+                    { value: 30, duration: 2500 }
+                ],
+                translateX: [
+                    { value: 25, duration: 3000 },
+                    { value: -25, duration: 3000 }
+                ],
+                rotate: [
+                    { value: 15, duration: 2000 },
+                    { value: -15, duration: 2000 }
+                ],
+                opacity: [
+                    { value: 0.2, duration: 2000 },
+                    { value: 0.08, duration: 2000 }
+                ],
+                loop: true,
+                easing: 'easeInOutSine',
+                delay: anime.stagger(300)
+            });
+
+            // Floating Particles Animation
+            anime({
+                targets: '.particle',
+                translateY: [
+                    { value: -25, duration: 2200 },
+                    { value: 25, duration: 2200 }
+                ],
+                translateX: [
+                    { value: 25, duration: 2800 },
+                    { value: -25, duration: 2800 }
+                ],
+                scale: [
+                    { value: 1.15, duration: 2500 },
+                    { value: 0.85, duration: 2500 }
+                ],
+                loop: true,
+                easing: 'easeInOutSine',
+                delay: anime.stagger(250)
+            });
+
+            // Decorative Circles Animation
+            anime({
+                targets: '.deco-circle',
+                scale: [
+                    { value: 1.3, duration: 3500 },
+                    { value: 0.9, duration: 3500 }
+                ],
+                opacity: [
+                    { value: 0.12, duration: 3500 },
+                    { value: 0.04, duration: 3500 }
+                ],
+                rotate: [
+                    { value: 180, duration: 7000 }
+                ],
+                loop: true,
+                easing: 'easeInOutSine',
+                delay: anime.stagger(500)
+            });
+
+            // Nav Animation
+            anime({
+                targets: 'nav',
+                opacity: [0, 1],
+                translateY: [-20, 0],
+                duration: 900,
+                easing: 'easeOutExpo'
+            });
         });
 
-        function animateEntrance() {
-            anime({
-                targets: '.category-card, .product-card',
-                translateY: [50, 0],
-                opacity: [0, 1],
-                delay: anime.stagger(100),
-                easing: 'easeOutExpo'
-            });
-        }
-
-        function renderProducts() {
-            const container = document.getElementById('productList');
-            const filtered = products.filter(p => {
-                let match = true;
-                
-                if (filters.category !== 'all' && p.category !== filters.category) match = false;
-                if (filters.size !== 'all' && !p.size.includes(filters.size) && !p.size.includes('All')) match = false;
-                
-                if (filters.price !== 'all') {
-                    const [min, max] = filters.price.split('-').map(Number);
-                    if (p.price < min || p.price > max) match = false;
-                }
-                
-                if (filters.search && !p.name.toLowerCase().includes(filters.search.toLowerCase())) match = false;
-                
-                return match;
-            });
-
-            container.innerHTML = filtered.map(p => `
-                <div class="col-6 col-md-4">
-                    <div class="product-card">
-                        <div class="product-img"></div>
-                        <div class="p-3">
-                            <h6 class="mb-1">${p.name}</h6>
-                            <p class="text-muted small mb-1">${p.category === 'pria' ? '👔 Pria' : '👗 Wanita'}</p>
-                            <p class="fw-bold text-success mb-0">Rp ${p.price.toLocaleString('id-ID')}</p>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-
-            anime({
-                targets: '.product-card',
-                scale: [0.8, 1],
-                opacity: [0, 1],
-                delay: anime.stagger(50)
-            });
-        }
-
-        function renderNotifications() {
-            const container = document.getElementById('notifList');
-            container.innerHTML = notifications.map(n => `
-                <div class="notif-item ${n.read ? '' : 'unread'}" onclick="readNotification(${n.id})">
-                    <h6>${n.title}</h6>
-                    <p class="mb-1 small">${n.message}</p>
-                    <small class="text-muted">${n.date}</small>
-                </div>
-            `).join('');
-        }
-
-        function renderStores() {
-            const container = document.getElementById('storeList');
-            container.innerHTML = stores.map(s => `
-                <div class="store-card">
-                    <h6><i class="bi bi-shop"></i> ${s.name}</h6>
-                    <p class="mb-1 small"><i class="bi bi-geo-alt"></i> ${s.address}</p>
-                    <p class="mb-2 small text-muted"><i class="bi bi-signpost"></i> ${s.distance}</p>
-                    <div class="d-flex gap-2">
-                        <button class="btn btn-sm btn-outline-success" onclick="openMaps('${s.address}')">
-                            <i class="bi bi-map"></i> Navigasi
-                        </button>
-                        <button class="btn btn-sm btn-outline-primary" onclick="callStore('${s.phone}')">
-                            <i class="bi bi-telephone"></i> Telepon
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function setupEventListeners() {
-            // Navigation
-            document.querySelectorAll('.nav-item-custom').forEach(item => {
-                item.addEventListener('click', () => {
-                    const page = item.dataset.page;
-                    switchPage(page);
-                    
-                    document.querySelectorAll('.nav-item-custom').forEach(i => i.classList.remove('active'));
-                    item.classList.add('active');
+        // Hover Animation for Social Links
+        document.querySelectorAll('.social-link').forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                anime({
+                    targets: this,
+                    scale: 1.2,
+                    rotate: 10,
+                    duration: 400,
+                    easing: 'easeOutExpo'
                 });
             });
 
-            // Filters
-            document.querySelectorAll('#categoryFilters .filter-chip').forEach(chip => {
-                chip.addEventListener('click', () => {
-                    document.querySelectorAll('#categoryFilters .filter-chip').forEach(c => c.classList.remove('active'));
-                    chip.classList.add('active');
-                    filters.category = chip.dataset.value;
-                    saveFilters();
-                    renderProducts();
+            link.addEventListener('mouseleave', function() {
+                anime({
+                    targets: this,
+                    scale: 1,
+                    rotate: 0,
+                    duration: 400,
+                    easing: 'easeOutExpo'
+                });
+            });
+        });
+
+        // Hover Animation for Info Items
+        document.querySelectorAll('.info-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                anime({
+                    targets: this.querySelector('.info-icon'),
+                    scale: 1.15,
+                    rotate: 360,
+                    duration: 600,
+                    easing: 'easeOutExpo'
                 });
             });
 
-            document.querySelectorAll('#sizeFilters .filter-chip').forEach(chip => {
-                chip.addEventListener('click', () => {
-                    document.querySelectorAll('#sizeFilters .filter-chip').forEach(c => c.classList.remove('active'));
-                    chip.classList.add('active');
-                    filters.size = chip.dataset.value;
-                    saveFilters();
-                    renderProducts();
+            item.addEventListener('mouseleave', function() {
+                anime({
+                    targets: this.querySelector('.info-icon'),
+                    scale: 1,
+                    rotate: 0,
+                    duration: 600,
+                    easing: 'easeOutExpo'
                 });
             });
+        });
 
-            document.querySelectorAll('#priceFilters .filter-chip').forEach(chip => {
-                chip.addEventListener('click', () => {
-                    document.querySelectorAll('#priceFilters .filter-chip').forEach(c => c.classList.remove('active'));
-                    chip.classList.add('active');
-                    filters.price = chip.dataset.value;
-                    saveFilters();
-                    renderProducts();
-                });
-            });
-
-            // Search
-            const searchInput = document.getElementById('searchInput');
-            searchInput.addEventListener('input', (e) => {
-                const query = e.target.value;
-                if (query.length > 0) {
-                    showSearchSuggestions(query);
-                } else {
-                    document.getElementById('searchSuggestions').innerHTML = '';
-                }
-            });
-
-            searchInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    performSearch(e.target.value);
-                }
-            });
-        }
-
-        function showSearchSuggestions(query) {
-            const suggestions = products.filter(p => 
-                p.name.toLowerCase().includes(query.toLowerCase())
-            ).slice(0, 5);
-
-            const container = document.getElementById('searchSuggestions');
-            container.innerHTML = suggestions.map(s => `
-                <div class="p-2 bg-white rounded mb-1" style="cursor: pointer;" onclick="selectSuggestion('${s.name}')">
-                    ${s.name}
-                </div>
-            `).join('');
-        }
-
-        function selectSuggestion(name) {
-            document.getElementById('searchInput').value = name;
-            performSearch(name);
-            document.getElementById('searchSuggestions').innerHTML = '';
-        }
-
-        function performSearch(query) {
-            filters.search = query;
-            switchPage('searchPage');
-            
-            const container = document.getElementById('searchResults');
-            const results = products.filter(p => 
-                p.name.toLowerCase().includes(query.toLowerCase())
-            );
-
-            if (results.length === 0) {
-                container.innerHTML = '<div class="col-12 text-center p-5"><p>Tidak ada produk yang ditemukan</p></div>';
-                return;
-            }
-
-            container.innerHTML = results.map(p => `
-                <div class="col-6 col-md-4">
-                    <div class="product-card">
-                        <div class="product-img"></div>
-                        <div class="p-3">
-                            <h6 class="mb-1">${p.name}</h6>
-                            <p class="text-muted small mb-1">${p.category === 'pria' ? '👔 Pria' : '👗 Wanita'}</p>
-                            <p class="fw-bold text-success mb-0">Rp ${p.price.toLocaleString('id-ID')}</p>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function switchPage(pageId) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-            
-            anime({
-                targets: `#${pageId}`,
-                translateX: [100, 0],
-                opacity: [0, 1],
-                duration: 500,
-                easing: 'easeOutExpo'
-            });
-        }
-
-        function readNotification(id) {
-            const notif = notifications.find(n => n.id === id);
-            if (notif) {
-                notif.read = true;
-                renderNotifications();
-                updateNotifBadge();
-            }
-        }
-
-        function updateNotifBadge() {
-            const unread = notifications.filter(n => !n.read).length;
-            const badge = document.getElementById('notifBadge');
-            if (unread > 0) {
-                badge.textContent = unread;
-                badge.style.display = 'flex';
-            } else {
-                badge.style.display = 'none';
-            }
-        }
-
-        function openMaps(address) {
-            const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
-            window.open(url, '_blank');
-        }
-
-        function callStore(phone) {
-            window.location.href = `tel:${phone}`;
-        }
-
-        function saveFilters() {
-            localStorage.setItem('ilynFilters', JSON.stringify(filters));
-        }
-
-        // Service Worker Registration
-        function registerServiceWorker() {
-            if ('serviceWorker' in navigator) {
-                const swCode = `
-                    self.addEventListener('install', (e) => {
-                        e.waitUntil(
-                            caches.open('ilyn-v1').then((cache) => {
-                                return cache.addAll(['/']);
-                            })
-                        );
-                    });
-
-                    self.addEventListener('fetch', (e) => {
-                        e.respondWith(
-                            caches.match(e.request).then((response) => {
-                                return response || fetch(e.request);
-                            })
-                        );
-                    });
-                `;
-                
-                const blob = new Blob([swCode], { type: 'application/javascript' });
-                const swUrl = URL.createObjectURL(blob);
-                
-                navigator.serviceWorker.register(swUrl).then(() => {
-                    console.log('Service Worker registered');
-                }).catch((error) => {
-                    console.log('Service Worker registration failed:', error);
-                });
-            }
-
-            // Manifest
-            const manifest = {
-                name: 'Ilyn - Fashion Muslim',
-                short_name: 'Ilyn',
-                description: 'Elegansi Muslim, Inspirasi Ilyn',
-                start_url: '/',
-                display: 'standalone',
-                background_color: '#A1BC98',
-                theme_color: '#A1BC98',
-                icons: [
-                    {
-                        src: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%23A1BC98" width="100" height="100"/><text x="50" y="60" font-size="40" text-anchor="middle" fill="white" font-family="Arial">I</text></svg>',
-                        sizes: '192x192',
-                        type: 'image/svg+xml'
-                    }
-                ]
-            };
-
-            const manifestBlob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
-            const manifestUrl = URL.createObjectURL(manifestBlob);
-            document.getElementById('manifest-placeholder').setAttribute('href', manifestUrl);
-        }
+        // Track visit count in localStorage
+        let visitCount = parseInt(getFromLocalStorage('visitCount')) || 0;
+        visitCount++;
+        saveToLocalStorage('visitCount', visitCount);
+        console.log('Total kunjungan: ' + visitCount);
     </script>
 </body>
 </html>
